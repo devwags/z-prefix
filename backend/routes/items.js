@@ -1,8 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const router = express.Router();
 const {getAllItems, addItem} = require('../db/controllers');
 
 router.use(express.json());
+router.use(cors({
+  credentials: true,
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+}));
 
 router.get('/', async (req, res)=>{
   const response = await getAllItems();
