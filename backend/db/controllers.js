@@ -21,7 +21,12 @@ const addUser = async ({first_name, last_name, username, password}) => {
     username: username,
     password: password
   })
-  console.log(result);
+  return result;
+}
+
+const getItem = async (item_id) => {
+  const result = await knex('items').first('*').where('id', item_id);
+  console.log('result', result)
   return result;
 }
 
@@ -40,4 +45,17 @@ const getAllItems = () => {
   return knex('items').select('*');
 }
 
-module.exports = {getUser, getAllUsers, getAllItems, addUser, addItem}
+const getItemsPerUser = async (user_id) => {
+  const result = await knex('items').select('*').where({user_id: user_id});
+  return result;
+}
+
+const editItem = async ({user_id, item_name, description, quantity}) => {
+  //Editing here
+}
+
+const deleteItem = async (item_id) => {
+
+}
+
+module.exports = {getUser, getAllUsers, getAllItems, addUser, addItem, getItem, getItemsPerUser, editItem}
