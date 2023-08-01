@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const router = express.Router();
+const cookieJwtAuth = require('../middleware/cookieJwtAuth')
 const {getAllItems, addItem, getItem} = require('../db/controllers');
 
 router.use(express.json());
@@ -34,6 +35,14 @@ router.get('/:itemId', async (req, res)=>{
   } catch (e) {
     console.log(e.message);
   }
+})
+
+router.get('/myItems', cookieJwtAuth, async (req, res)=>{
+  const {user} = req.user;
+  console.log(`user is: ${user}`)
+  const result = await getItemsPerUser(user.id);
+  console.log(`results are: ${result}`)
+  res.status(200).send(JSON.stringify(result))
 })
 
 module.exports = router;

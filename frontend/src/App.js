@@ -3,6 +3,7 @@ import './App.css';
 import CreateAccount from './components/CreateAccount';
 import LogIn from './components/LogIn';
 import ItemContainer from './components/ItemContainer';
+import ManagerContainer from './components/ManagerContainer';
 import Item from './components/Item';
 import {Routes, Route} from 'react-router-dom';
 
@@ -15,7 +16,7 @@ function App() {
       <Routes>
         <Route path='/' element={<ItemContainer />}/>
         <Route path='/items/:itemId' element={<Item />}/>
-        {/* <Route path='/users/:username' element={<ManagerContainer />}/> */}
+        <Route path='/myItems' element={<ManagerContainer />}/>
       </Routes>
     </div>
   );

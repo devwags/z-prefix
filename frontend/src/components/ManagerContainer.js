@@ -3,11 +3,11 @@ import Card from 'react-bootstrap/Card'
 import {useEffect, useState} from 'react'
 
 
-const ItemContainer = () => {
+const ManagerContainer = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/items')
+    fetch('http://localhost:8080/items/myItems')
       .then((res)=>res.json())
       .then((data)=>{
         console.log(items)
@@ -43,4 +43,4 @@ const ItemContainer = () => {
   )
 }
 
-export default ItemContainer;
+export default ManagerContainer;

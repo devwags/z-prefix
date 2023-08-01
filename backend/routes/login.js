@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
 
   delete user.password;
 
-  const token = jwt.sign(user, process.env.MY_SECRET, {expiresIn: '10m'});
+  const token = jwt.sign(user, process.env.MY_SECRET);
 
   res.cookie("token", JSON.stringify(token), {
     httpOnly: true
